@@ -8,18 +8,21 @@ startCalculation()
 
 function startCalculation() {
   myInput.value = 0
-  // For each button -> return its ID when clicked. 
+  // For each button -> return its ID when clicked
   buttons.forEach(button =>
     button.addEventListener('click', () => {
       switch (button.id) {
+        // Clears everything
         case "C":
           onClickClear()
           break;
 
+        // Deletes last number
         case "D":
           onClickDelete()
           break;
 
+        // If this is second time the operator is clicked keep calculation going, else put first value into second value
         case "+":
         case "-":
         case "*":
@@ -34,6 +37,7 @@ function startCalculation() {
           onClickOperator(button.id)
           break;
 
+        // calculates result
         case "=":
           if (myInput.value === "") {
           } else {
@@ -43,6 +47,7 @@ function startCalculation() {
           nanToError()
           break;
 
+        // Allows Only 1 dot to be added
         case ".":
           if (myOperator.value === "=") {
           } else {
@@ -58,7 +63,7 @@ function startCalculation() {
             onClickNumber(button.id)
           }
       }
-      showCalculation()
+      showCalculation() // show second value if it exists
     }))
 }
 
@@ -85,7 +90,7 @@ function onClickClear() {
   myOperator.value = ""
 }
 
-// Deletes
+// Deletes last number
 function onClickDelete() {
   console.log(myInput.value);
   myInput.value = myInput.value.slice(0, -1)
